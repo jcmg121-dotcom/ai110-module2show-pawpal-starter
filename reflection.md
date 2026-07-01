@@ -47,13 +47,14 @@
 
 **a. How you used AI**
 
-- How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
-- What kinds of prompts or questions were most helpful?
+- I used my AI coding assistant throughout the project for design brainstorming, debugging, test writing, and small refactors. It was especially helpful when I wanted to turn a rough idea into working Python classes or when I needed help explaining how to structure the scheduler methods cleanly.
+- The most useful prompts were specific and focused, such as asking for help refining the scheduler API, identifying edge cases for recurring tasks, or reviewing a block of code for clarity and maintainability. I also found it very helpful to ask the assistant to compare different design choices before I committed to one.
 
 **b. Judgment and verification**
 
-- Describe one moment where you did not accept an AI suggestion as-is.
-- How did you evaluate or verify what the AI suggested?
+- One example of an AI suggestion I rejected was a proposal to make the scheduler do more complex automatic conflict resolution, such as shifting tasks to nearby times when a conflict was found. I modified that idea because it would have made the scheduler less transparent and less aligned with the simple, readable design I wanted for this project.
+- I evaluated the AI’s suggestions by checking them against the class responsibilities in my implementation and by running the tests. If a suggestion introduced extra complexity or made the system harder to explain, I adjusted it rather than accepting it as-is.
+- Using separate chat sessions for different phases helped me stay organized because I could keep design planning, implementation, and testing in distinct contexts. This made it easier to revisit earlier decisions without mixing up ideas or code changes.
 
 ---
 
@@ -61,13 +62,13 @@
 
 **a. What you tested**
 
-- What behaviors did you test?
-- Why were these tests important?
+- I tested sorting behavior, recurring task creation, completion flow, and conflict detection for tasks that share the same preferred time.
+- These tests were important because they cover the core behaviors that make the scheduler useful in real life: a schedule should be ordered clearly, recurring tasks should continue naturally, and conflicting times should be flagged instead of silently slipping through.
 
 **b. Confidence**
 
-- How confident are you that your scheduler works correctly?
-- What edge cases would you test next if you had more time?
+- I am fairly confident that the scheduler works correctly for the core scenarios it was designed for. The tests pass and the app behavior is consistent for the main happy paths and several edge cases.
+- If I had more time, I would test empty-task states, invalid or missing preferred times, very long recurring ranges, and duplicate task IDs to make the scheduler more robust.
 
 ---
 
@@ -75,12 +76,12 @@
 
 **a. What went well**
 
-- What part of this project are you most satisfied with?
+- I am most satisfied with how the scheduler became clearer and more structured as the project evolved. The combination of tests, a simple class model, and a clean Streamlit UI made the final version feel coherent and understandable.
 
 **b. What you would improve**
 
-- If you had another iteration, what would you improve or redesign?
+- If I had another iteration, I would improve the design by making the scheduler more flexible and adding better support for multiple pets, more advanced conflict handling, and richer task metadata.
 
 **c. Key takeaway**
 
-- What is one important thing you learned about designing systems or working with AI on this project?
+- One important lesson was that powerful AI tools are most effective when the human acts as the lead architect: setting the goals, enforcing design boundaries, and verifying the implementation. The AI can accelerate development, but the overall system still needs clear direction and thoughtful judgment.

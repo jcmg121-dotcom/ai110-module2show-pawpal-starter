@@ -79,6 +79,8 @@ tests/test_pawpal_system.py
 13 passed in 0.01s
 ```
 
+Confidence Level: 4 stars
+
 ## 📐 Smarter Scheduling
 
 The scheduler now includes a few lightweight but useful planning behaviors that make the app more practical for everyday pet care.
@@ -90,14 +92,29 @@ The scheduler now includes a few lightweight but useful planning behaviors that 
 | Conflict detection logic | `Scheduler.detect_conflicts()` and `Scheduler.get_conflict_warning()` | Pending tasks that share the same date and preferred time are flagged, and the scheduler returns a warning message instead of crashing. |
 | Recurring task logic | `Task.create_next_occurrence()` and `Scheduler.complete_task()` | When a recurring task is completed, the scheduler creates the next pending occurrence automatically. |
 
-## 📸 Demo Walkthrough
+## 🎬 Demo Walkthrough
 
-Describe your app in numbered steps so a reader can follow along without watching a video:
+PawPal+ provides a simple Streamlit experience for planning pet care tasks and viewing a sorted daily schedule.
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Open the app and enter owner and pet details. The interface lets you update the owner name, pet name, and species before creating a care plan.
+2. Add tasks such as walks, feeding, or medication by entering a title, duration, priority, and recurrence interval. Each task is saved in session state and prepared for scheduling.
+3. Generate a schedule to see the tasks arranged by priority, preferred time, and due date. The app displays the tasks in a professional table and highlights any scheduling conflicts.
+4. Use the pet and status filters to focus on specific tasks, such as only pending tasks for one pet or all tasks for the current owner.
+5. Review scheduler behavior such as sorting, recurring-task expansion, and conflict warnings. If two tasks share the same time, the app surfaces that as a warning.
 
-**Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->
+Example workflow:
+- Add a pet such as Mochi
+- Create a task like "Morning walk"
+- Generate the schedule and review the sorted plan for today
+
+Sample CLI output from running main.py:
+
+```text
+Today's Schedule
+----------------
+- 08:00 | Morning walk | Pet: Mochi | Priority: high | Status: pending | Duration: 30 min
+- 09:00 | Medication | Pet: Mochi | Priority: high | Status: completed | Duration: 5 min
+- 18:00 | Feeding | Pet: Luna | Priority: medium | Status: pending | Duration: 10 min
+
+Conflict warning: Morning walk and Medication overlap at 08:00 on 2026-06-29
+```

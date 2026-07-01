@@ -92,10 +92,20 @@ if st.button("Add task"):
         st.session_state.scheduler.add_task(task)
 
 if st.session_state.tasks:
-    st.write("Current tasks:")
+    st.success("Current tasks are previewed in scheduler order.")
+    preview_scheduler = Scheduler("preview-schedule", owner, pet, "2026-06-29", "2026-06-29")
+    for task in st.session_state.tasks:
+        preview_scheduler.add_task(task)
+
+    sorted_tasks = preview_scheduler.sort_tasks()
     task_rows = [
-        {"title": task.title, "duration_minutes": task.duration_minutes, "priority": task.priority}
-        for task in st.session_state.tasks
+        {
+            "Task": task.title,
+            "Time": task.preferred_time or "TBD",
+            "Priority": task.priority.title(),
+            "Duration (min)": task.duration_minutes,
+        }
+        for task in sorted_tasks
     ]
     st.table(task_rows)
 else:
@@ -123,15 +133,24 @@ if "scheduler" in st.session_state:
 
     visible_tasks = st.session_state.scheduler.filter_tasks(pet=selected_pet, status=status_filter)
     if visible_tasks:
-        for task in visible_tasks:
-            st.write(f"- {task.preferred_time or 'TBD'} | {task.title} | Pet: {task.pet.name if task.pet else 'Unassigned'} | Priority: {task.priority} | Duration: {task.duration_minutes} min")
+        st.success(f"Showing {len(visible_tasks)} tasks in sorted order.")
+        table_rows = [
+            {
+                "Time": task.preferred_time or "TBD",
+                "Task": task.title,
+                "Pet": task.pet.name if task.pet else "Unassigned",
+                "Priority": task.priority.title(),
+                "Status": task.status.title(),
+                "Duration (min)": task.duration_minutes,
+            }
+            for task in visible_tasks
+        ]
+        st.table(table_rows)
     else:
         st.info("No tasks match the selected filters.")
 
-    conflicts = st.session_state.scheduler.detect_conflicts()
-    if conflicts:
-        st.warning("Basic conflicts detected:")
-        for first_task, second_task in conflicts:
-            st.write(f"- {first_task.title} and {second_task.title} both target {first_task.preferred_time} on {first_task.due_date}")
+    conflict_warning = st.session_state.scheduler.get_conflict_warning()
+    if conflict_warning:
+        st.warning(conflict_warning)
     else:
         st.success("No scheduling conflicts detected.")
