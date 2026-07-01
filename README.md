@@ -67,19 +67,24 @@ pytest --cov
 Sample test output:
 
 ```
-# Paste your pytest output here
+Today's Schedule
+----------------
+- 08:00 | Morning walk | Priority: high | Duration: 30 min
+- 09:00 | Medication | Priority: high | Duration: 5 min
+- 18:00 | Feeding | Priority: medium | Duration: 10 min
+
 ```
 
 ## 📐 Smarter Scheduling
 
-> Fill in once you've implemented scheduling logic.
+The scheduler now includes a few lightweight but useful planning behaviors that make the app more practical for everyday pet care.
 
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Sorting behavior | `Task.sort_key()` and `Scheduler.sort_tasks()` | Tasks are ordered by priority, preferred time, and due date so the plan is easier to follow. |
+| Filtering behavior | `Scheduler.filter_tasks()` and `Scheduler.filter_tasks_by_status_or_pet()` | Tasks can be filtered by pet and/or completion status to focus on a specific view of the schedule. |
+| Conflict detection logic | `Scheduler.detect_conflicts()` and `Scheduler.get_conflict_warning()` | Pending tasks that share the same date and preferred time are flagged, and the scheduler returns a warning message instead of crashing. |
+| Recurring task logic | `Task.create_next_occurrence()` and `Scheduler.complete_task()` | When a recurring task is completed, the scheduler creates the next pending occurrence automatically. |
 
 ## 📸 Demo Walkthrough
 
