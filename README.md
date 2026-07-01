@@ -56,23 +56,27 @@ Paste a sample of your app's CLI or Streamlit output here so a reader can see wh
 
 ## 🧪 Testing PawPal+
 
+Run the test suite with:
+
 ```bash
-# Run the full test suite:
-pytest
-
-# Run with coverage:
-pytest --cov
+python -m pytest
 ```
 
-Sample test output:
+These tests cover the core scheduling behaviors of PawPal+, including task sorting, recurring task creation, completion flow, and conflict detection for overlapping preferred times.
 
-```
-Today's Schedule
-----------------
-- 08:00 | Morning walk | Priority: high | Duration: 30 min
-- 09:00 | Medication | Priority: high | Duration: 5 min
-- 18:00 | Feeding | Priority: medium | Duration: 10 min
+Successful test output:
 
+```text
+============================= test session starts ==============================
+platform darwin -- Python 3.14.0, pytest-7.4.2, py-1.11.0
+rootdir: /Users/josemarroquin/Documents/CodePath/AI110/Week 4/Paw_Project/ai110-module2show-pawpal-starter
+collected 13 items
+
+tests/test_pawpal.py
+tests/test_pawpal_system.py
+
+.............                                                            [100%]
+13 passed in 0.01s
 ```
 
 ## 📐 Smarter Scheduling
